@@ -1,0 +1,1198 @@
+// ==UserScript==
+// @name       potato mod
+// @namespace    by Justgamer101
+// @version    1.2
+// @description b for manual bull tick, right click for tank, left click for bull, t totoggle counter, esc for menu
+// @author       Justgamer101
+// @match        *://sandbox.moomoo.io/*
+// @match        *://dev.moomoo.io/*
+// @match        *://moomoo.io/*
+// @grant    none
+// @require https://gist.githubusercontent.com/Justgamer101/22e5b6206c3ea7d825e4aa095e4151c3/raw/a013e53d44481766b1fcbf1d32be9c4c19075bea/messagepack2.js
+// @require https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js
+// ==/UserScript==
+
+let hue = 0;
+
+let replaceInterval = setInterval(() => {
+    if (CanvasRenderingContext2D.prototype.roundRect) {
+        CanvasRenderingContext2D.prototype.roundRect = ((oldFunc) => function() { if (this.fillStyle == "#8ecc51") this.fillStyle = `hsl(${hue}, 100%, 50%)`; return oldFunc.call(this, ...arguments); })(CanvasRenderingContext2D.prototype.roundRect);
+        clearInterval(replaceInterval);
+    }}, 0);
+
+function changeHue() {
+    hue += .01;
+}
+
+setInterval(changeHue, 0);
+var revert = false;
+var down = 180;
+var left = 270;
+var up = 0;
+var right = 90;
+var joind = false;
+var automill = false;
+var milldir;
+let mouseX;
+let mouseY;
+
+let width;
+let height;
+
+setInterval(() => {
+    if(autoaim == true) {
+        doNewSend(["2", [nearestEnemyAngle]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if(autoprimary == true) {
+        doNewSend(["5", [primary, true]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if(autosecondary == true) {
+        doNewSend(["5", [secondary, true]]);
+    }
+}, 0);
+
+var hatToggle = 1;
+
+setInterval(() => {
+    if(hatToggle == 1) {
+        if(oldHat != normalHat) {
+            hat(normalHat);
+            console.log("Tried. - Hat")
+        }
+        if(oldAcc != normalAcc) {
+            acc(normalAcc);
+            console.log("Tried. - Acc")
+        }
+        oldHat = normalHat;
+        oldAcc = normalAcc
+    }
+}, 25);
+
+setInterval(() => {
+    if(revert) {
+        setTimeout(() => {
+            revert = false;
+            autoprimary = false;
+            autosecondary = false;
+        }, 200);
+    }
+}, 55);
+
+function normal() {
+    hat(normalHat);
+    acc(normalAcc);
+}
+
+function aim(x, y){
+    var cvs = document.getElementById("gameCanvas");
+    cvs.dispatchEvent(new MouseEvent("mousemove", {
+        clientX: x,
+        clientY: y
+
+    }));
+}
+
+var nearestEnemy;
+var nearestEnemyAngle;
+var isEnemyNear;
+var primary;
+var secondary;
+var foodType;
+var wallType;
+var spikeType;
+var millType;
+var mineType;
+var boostType;
+var turretType;
+var spawnpadType;
+var autoaim = false;
+var autoprimary = false;
+var autosecondary = false;
+var tick = 1;
+var oldHat;
+var oldAcc;
+var enemiesNear;
+var normalHat;
+var normalAcc;
+var ws;
+var msgpack5 = msgpack;
+var boostDir;
+let myPlayer = {
+    id: null,
+    x: null,
+    y: null,
+    dir: null,
+    object: null,
+    weapon: null,
+    clan: null,
+    isLeader: null,
+    hat: null,
+    accessory: null,
+    isSkull: null,
+    health: null
+};
+var teamateinfs;
+
+
+var messageToggle = 0;
+var clanToggle = 0;
+var afterhat = 6;
+var invismode = false;
+
+function besttool(ps, b){
+    if(ps == secondary && secondary == b) {
+        autosecondary = true;
+    } else {
+        autoprimary = true;
+
+    }
+    revert = true;
+}
+
+
+const CanvasAPI = document.getElementById("gameCanvas")
+CanvasAPI.addEventListener("mousedown", buttonPressD, false);
+
+function buttonPressD(e) {
+    if (e.button == 2) {
+        besttool(secondary, 10);
+        click = true;
+        hat(40);
+        acc(21);
+        setTimeout(() => {
+            click = false;
+            hat(11);
+        }, 155);
+    }
+    if (e.button == 1) {
+    }
+    if (e.button == 0) {
+        besttool(primary, primary);
+        click = true;
+        hat(7);
+        acc(21);
+        if(primary !== 7){
+            setTimeout(() => {
+                click = false;
+                hat(53);
+                setTimeout(() => {
+                    hat(11);
+                }, 50);
+            }, 150);
+        }
+    }
+}
+
+CanvasAPI.addEventListener("mouseup", buttonPressu, false);
+
+function buttonPressu(e) {
+    if (e.button == 2) {
+        click = false;
+        hat(11);
+        acc(21);
+    }
+    if (e.button == 0) {
+        click = false;
+        hat(11);
+        acc(21);
+    }
+}
+
+var click = false;
+setInterval(() => {
+    if(click == true) {
+        doNewSend(["c", [1, null]]);
+        doNewSend(["c", [0, null]]);
+    }
+}, 10);
+
+setInterval(() => {
+    update();
+    if(myPlayer.hat == 45 && myPlayer.health < 100) {
+        hat(13);
+        acc(13);
+    }
+}, 1000);
+WebSocket.prototype.oldSend = WebSocket.prototype.send;
+WebSocket.prototype.send = function(m){
+    if (!ws){
+        document.ws = this;
+
+        ws = this;
+        socketFound(this);
+    }
+    this.oldSend(m);
+};
+
+var trapinf = null;
+
+function socketFound(socket){
+    socket.addEventListener('message', function(message){
+        handleMessage(message);
+        //console.log(`${document.ws.url.split("&")[0]}&token=${encodeURIComponent(socket)}`);
+    });
+}
+
+function handleMessage(m){
+    let temp = msgpack5.decode(new Uint8Array(m.data));
+    let data;
+    if(temp.length > 1) {
+        data = [temp[0], ...temp[1]];
+        if (data[1] instanceof Array){
+            data = data;
+        }
+    } else {
+        data = temp;
+    }
+    let item = data[0];
+    if(!data) {return};
+
+    if(item == "h" && data[1] == myPlayer.id && myPlayer.hat !== 45) {
+        if(data[2] < 56 && data[2] > 0) {
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            if(coinst && isEnemyNear){
+                if(nearestEnemy[9] == 6){
+                    acc(21);
+                    hat(7);
+                    doNewSend(["5", [primary, true]]);
+                    autoaim = true;
+                    autoprimary = true;
+                    autosecondary = false;
+                    doNewSend(["7", [1]]);
+                    setTimeout( () => {
+                        autoprimary = false;
+                        autosecondary = true;
+                        doNewSend(["5", [secondary, true]]);
+                        hat(53);
+                        setTimeout( () => {
+                            doNewSend(["7", [1]]);
+                            hat(afterhat);
+                            autoaim = false;
+                            autosecondary = false;
+                            doNewSend(["5", [primary, true]]);
+                            setTimeout(() => {
+                                hat(11);
+                            }, 50);
+                        }, 90);
+                    }, 85);
+                } else {
+                    acc(21);
+                    hat(7);
+                    doNewSend(["5", [primary, true]]);
+                    autoaim = true;
+                    autoprimary = true;
+                    autosecondary = false;
+                    doNewSend(["7", [1]]);
+                    setTimeout( () => {
+                        hat(53);
+                        doNewSend(["7", [1]]);
+                        setTimeout( () => {
+                            hat(afterhat);
+                        }, 90);
+                        autoaim = false;
+                        autoprimary = false;
+                        doNewSend(["5", [primary, true]]);
+                    }, 90);
+                }
+            }
+            acc(21);
+            if(isEnemyNear){
+                if(cursettingsval.abs){
+                    hat(26);
+                }
+            } else {
+                hat(7);
+            }
+            setTimeout( () => {
+                bullupdate++;
+                bulltoupdate = true;
+            }, 275);
+        }
+    }
+    if(item == "h" && data[1] == myPlayer.id) {
+        myPlayer.health = data[2];
+        if(data[2] < 100 && data[2] > 0 && bullupdate == 0) {
+            if(healing == false){
+                healing = true;
+                setTimeout( () => {
+                    place(foodType, null);
+                    healing = false;
+                }, 175);
+            }
+        } else if (bullupdate > 0 && data[2] < 100 && data[2] > 0){
+            if(healing == false){
+                healing = true;
+                setTimeout( () => {
+                    place(foodType, null);
+                    healing = false;
+                }, 275);
+            }
+        }
+    }
+    if(item == "h" && data[1] == myPlayer.id && bullupdate > 0 && isEnemyNear == false && data[2] < 100 && data[2] > 56) {
+        bullupdate = 0;
+        setTimeout( () => {
+            place(foodType, null);
+        }, 500);
+    } else if (item == "h" && data[1] == myPlayer.id && bullupdate < 1 && bulltoupdate) {
+        bulltoupdate = false;
+        bullupdate = 0;
+        hat(afterhat);
+        acc(21);
+    }
+
+    if(item === "io-init") {
+        let cvs = document.getElementById("gameCanvas");
+        width = cvs.clientWidth;
+        height = cvs.clientHeight;
+        $(window).resize(function() {
+            width = cvs.clientWidth;
+            height = cvs.clientHeight;
+        });
+        cvs.addEventListener("mousemove", e => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+    }
+
+    if (item == "1" && myPlayer.id == null){
+        myPlayer.id = data[1];
+    }
+
+    if (item == "33") {
+        enemiesNear = [];
+        teamateinfs = [];
+        for(let i = 0; i < data[1].length / 13; i++) {
+            let playerInfo = data[1].slice(13*i, 13*i+13);
+            if(playerInfo[0] == myPlayer.id) {
+                myPlayer.x = playerInfo[1];
+                myPlayer.y = playerInfo[2];
+                myPlayer.dir = playerInfo[3];
+                myPlayer.object = playerInfo[4];
+                myPlayer.weapon = playerInfo[5];
+                myPlayer.clan = playerInfo[7];
+                myPlayer.isLeader = playerInfo[8];
+                myPlayer.hat = playerInfo[9];
+                myPlayer.accessory = playerInfo[10];
+                myPlayer.isSkull = playerInfo[11];
+            } else if(playerInfo[7] != myPlayer.clan || playerInfo[7] === null) {
+                enemiesNear.push(playerInfo);
+            }
+        }
+        isEnemyNear = false;
+        if(enemiesNear) {
+            nearestEnemy = enemiesNear.sort((a,b) => dist(a, myPlayer) - dist(b, myPlayer))[0];
+        }
+        if(nearestEnemy) {
+            nearestEnemyAngle = Math.atan2(nearestEnemy[2]-myPlayer.y, nearestEnemy[1]-myPlayer.x);
+            if(Math.sqrt(Math.pow((myPlayer.y-nearestEnemy[2]), 2) + Math.pow((myPlayer.x-nearestEnemy[1]), 2)) < 175) {
+                isEnemyNear = true;
+            }
+        }
+        if (!nearestEnemy) {
+            nearestEnemyAngle = myPlayer.dir;
+        }
+    }
+    if(item == "6"){
+        for(let i = 0; i < data[1].length / 8; i++){
+            let ObjectData = data[1].slice(8*i, 8*i+8);
+            if(ObjectData[6] == 15 && ObjectData[7] != myPlayer.id && !teamateinfs.includes(ObjectData[7])){
+                if(Math.sqrt(Math.pow((myPlayer.y-ObjectData[2]), 2) + Math.pow((myPlayer.x-ObjectData[1]), 2)) < 120){
+                    if(cursettingsval.breaktrap){
+                        breaktrap.x = ObjectData[1];
+                        breaktrap.y = ObjectData[2];
+                        breaktrap.id = ObjectData[0];
+                        breaktrap.doing = true;
+                        click = true;
+                        hat(40);
+                        besttool(secondary, 10);
+                    }
+                    for(let i = 0; i < 36; i++){
+                        place(spikeType, myPlayer.dir + toRad(i * 10));
+                    }
+                }
+            }
+        }
+    }
+    if(item == '12'){
+        if(data[1] == breaktrap.id){
+            breaktrap.doing = false;
+            click = false;
+        }
+    }
+}
+
+var breaktrap = {
+    x: null,
+    y: null,
+    id: null,
+    doing: false
+}
+
+setInterval(() => {
+    if(myPlayer.hat !== 7 && bullupdate > 0 && isEnemyNear == false){
+        hat(7);
+        acc(21);
+    }
+    document.querySelector("#pre-content-container").style.display = "none";
+}, 700);
+
+setInterval(() => {
+    if(breaktrap.doing == true){
+        doNewSend(["2", [Math.atan2(breaktrap.y-myPlayer.y, breaktrap.x-myPlayer.x)]]);
+    }
+}, 100);
+
+setTimeout(() => {
+    document.getElementById("chatBox").placeholder = "POTAT";
+    document.querySelector("#pre-content-container").style.display = "none";
+    $("#ot-sdk-btn-floating").remove();
+    document.getElementById("gameName").innerHTML = "<br>Potato";
+}, 1000);
+
+var bullupdate = 0;
+var bulltoupdate = false;
+var healing = false;
+var insthealing = false;
+
+function doNewSend(sender){
+    ws.send(new Uint8Array(Array.from(msgpack5.encode(sender))));
+}
+
+function acc(id) {
+    if(myPlayer.accessory !== id){
+        doNewSend(["13c", [1, id, 1]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [0, id, 1]]);
+    }
+}
+
+function hat(id) {
+    if(myPlayer.hat !== id){
+        doNewSend(["13c", [1, id, 0]]);
+        doNewSend(["13c", [0, id, 0]]);
+    }
+}
+
+function place(id, angle = Math.atan2(mouseY - height / 2, mouseX - width / 2)) {
+    doNewSend(["5", [id, null]]);
+    doNewSend(["c", [1, angle]]);
+    doNewSend(["c", [0, angle]]);
+    doNewSend(["5", [myPlayer.weapon, true]]);
+}
+
+function trimill() {
+    place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(180));
+    place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(90));
+    place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) - toRad(90));
+    doNewSend(["33", [Math.atan2(mouseY - height / 2, mouseX - width / 2)]]);
+}
+
+function duomill() {
+    place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) + toRad(36));
+    place(millType, Math.atan2(mouseY - height / 2, mouseX - width / 2) - toRad(36));
+}
+
+var repeater = function(key, action, interval) {
+    let _isKeyDown = false;
+    let _intervalId = undefined;
+    return {
+        start(keycode) {
+            if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                _isKeyDown = true;
+                if(_intervalId === undefined) {
+                    _intervalId = setInterval(() => {
+                        action();
+                        if(!_isKeyDown){
+                            clearInterval(_intervalId);
+                            _intervalId = undefined;
+                        }
+                    }, interval);
+                }
+            }
+        },
+        stop(keycode) {
+            if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                _isKeyDown = false;
+            }
+        }
+    };
+}
+var coinst = false;
+
+const healer2 = repeater(81, () => {place(foodType, null)}, 10);
+const boostPlacer = repeater(70, () => {place(boostType)}, 0);
+const fourSpawnpader = repeater(75, fourSpawnpad, 0);
+const spikePlacer = repeater(86, () => {place(spikeType)}, 0);
+const millPlacer = repeater(78, () => {place(millType)}, 0);
+const turretPlacer = repeater(72, () => {place(turretType)}, 0);
+const buildtestr = repeater(32, trimill, 100);
+const duomiller = repeater(74, duomill, 0);
+
+document.addEventListener('keydown', (e)=>{
+    spikePlacer.start(e.keyCode);
+    fourSpawnpader.start(e.keyCode);
+    healer2.start(e.keyCode);
+    boostPlacer.start(e.keyCode);
+    millPlacer.start(e.keyCode);
+    turretPlacer.start(e.keyCode);
+    buildtestr.start(e.keyCode);
+    duomiller.start(e.keyCode);
+
+    if(e.keyCode == 82 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+         doNewSend(['ch', ['potato...is...op']]);
+        acc(21);
+        hat(7);
+        doNewSend(["5", [primary, true]]);
+        autoaim = true;
+        autoprimary = true;
+        autosecondary = false;
+        doNewSend(["7", [1]]);
+        setTimeout( () => {
+            autoprimary = false;
+            autosecondary = true;
+            doNewSend(["5", [secondary, true]]);
+            hat(53);
+            setTimeout( () => {
+                doNewSend(["7", [1]]);
+                hat(afterhat);
+                autoaim = false;
+                autosecondary = false;
+                doNewSend(["5", [primary, true]]);
+            }, 125);
+        }, 85);
+    }
+
+    if (e.keyCode == 16 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        fastest();
+    }
+
+    if(e.keyCode == 35 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        //katana + musket
+        doNewSend(["6", [7]]);
+        doNewSend(["6", [17]]);
+        doNewSend(["6", [31]]);
+        doNewSend(["6", [27]]);
+        doNewSend(["6", [10]]);
+        doNewSend(["6", [38]]);
+        doNewSend(["6", [4]]);
+        doNewSend(["6", [15]]);
+    }
+
+    if(e.keyCode == 36 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["6", [5]]);
+        doNewSend(["6", [17]]);
+        doNewSend(["6", [31]]);
+        doNewSend(["6", [23]]);
+        doNewSend(["6", [9]]);
+        doNewSend(["6", [38]]);
+        doNewSend(["6", [28]]);
+        doNewSend(["6", [15]]);
+    }
+    if (e.keyCode == 192 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["5", ['__protto__', !0]]);
+    }
+
+    if (e.keyCode == 84 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        coinst = !coinst;
+        doNewSend(['ch', ['counter ' + coinst]]);
+        if(coinst){
+            afterhat = 11
+        } else {
+            afterhat = 6
+        }
+    }
+    if (e.keyCode == 66 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        bullupdate++;
+        bulltoupdate = true;
+    }
+    /*if (e.keyCode == 89 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+invismode = !invismode;
+            doNewSend(['ch', [`invis buildings: ${invismode}`]]);
+    }*/
+})
+
+document.addEventListener('keyup', (e)=>{
+    spikePlacer.stop(e.keyCode);
+    fourSpawnpader.stop(e.keyCode);
+    boostPlacer.stop(e.keyCode);
+    millPlacer.stop(e.keyCode);
+    turretPlacer.stop(e.keyCode);
+    healer2.stop(e.keyCode);
+    buildtestr.stop(e.keyCode);
+    duomiller.stop(e.keyCode);
+    if(e.keyCode == 32 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        setTimeout( () => {
+            doNewSend(["33", [null]]);
+        }, 70);
+    }
+
+})
+
+function fastest() {
+    if (myPlayer.y < 2400){
+        normalHat = 15;
+    } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+        normalHat = 31;
+    } else {
+        normalHat = 12;
+    }
+    acc(11);
+    hat(normalHat);
+}
+
+function isElementVisible(e) {
+    return (e.offsetParent !== null);
+}
+
+function fourSpawnpad() {
+    place(spawnpadType, myPlayer.dir + toRad(135));
+    place(spawnpadType, myPlayer.dir + toRad(150));
+    place(spawnpadType, myPlayer.dir + toRad(165));
+    place(spawnpadType, myPlayer.dir + toRad(180));
+    place(spawnpadType, myPlayer.dir + toRad(270));
+    place(spawnpadType, myPlayer.dir + toRad(360));
+}
+
+function toRad(angle) {
+    return angle * 0.01745329251;
+}
+
+function dist(a, b){
+    return Math.sqrt( Math.pow((b.y-a[2]), 2) + Math.pow((b.x-a[1]), 2) );
+}
+
+function update() {
+    for (let i=0;i<9;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            primary = i;
+        }
+    }
+
+    for (let i=9;i<16;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            secondary = i;
+        }
+    }
+
+    for (let i=16;i<19;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            foodType = i - 16;
+        }
+    }
+
+    for (let i=19;i<22;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            wallType = i - 16;
+        }
+    }
+
+    for (let i=22;i<26;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            spikeType = i - 16;
+        }
+    }
+
+    for (let i=26;i<29;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            millType = i - 16;
+        }
+    }
+
+    for (let i=29;i<31;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            mineType = i - 16;
+        }
+    }
+
+    for (let i=31;i<33;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            boostType = i - 16;
+        }
+    }
+
+    for (let i=33;i<36;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            turretType = i - 16;
+        }
+    }
+
+    for (let i=36;i<37;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            spawnpadType = i - 16;
+        }
+    }
+
+    for (let i=37;i<39;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            turretType = i - 16;
+        }
+    }
+}
+
+function join4bots() {
+    const websockb = ws.url.split("&")[0];
+    for (let i = 0; i < 4; i++) {
+        window.grecaptcha.execute("6LevKusUAAAAAAFknhlV8sPtXAk5Z5dGP5T2FYIZ", { action: "homepage" }).then((function(e) {
+            wsType(`${websockb}&token=${encodeURIComponent(e)}`);
+        }));
+    }
+}
+
+function wsType(e) {
+    let ws = new WebSocket(e);
+    var bot = {
+        id: null,
+        x: null,
+        y: null,
+        dir: null,
+        weapon: null,
+        tribe: null,
+        playerdir: null,
+        playerdist: null,
+        enemydir: null,
+        foodtype: null,
+        primary: null,
+        secondary: null
+    };
+    ws.binaryType = "arraybuffer";
+    function sendenc(m){
+        ws.send(new Uint8Array(Array.from(msgpack5.encode(m))));
+    }
+    function placeb(type, angle = bot.dir){
+        sendenc(['5', [type, null]]);
+        sendenc(['c', [1, angle]]);
+        sendenc(['c', [0, angle]]);
+        sendenc(['5', [bot.weapon, true]]);
+    }
+    ws.onopen = () => {
+        botsconnected++
+        document.title = `bots connected: ${botsconnected}`
+        console.log('opened websocket');
+        sendenc(['sub to justgamer101 pls :3'])
+    }
+    ws.onmessage = (m) => {
+        let temp = msgpack5.decode(new Uint8Array(m.data));
+        let data = null;
+        if(temp.length > 1) {
+            data = [temp[0], ...temp[1]];
+            if (data[1] instanceof Array){
+                data = data;
+            }
+        } else {
+            data = temp;
+        }
+        let item = data[0];
+
+        if(item == 'io-init' || item == '11'){
+            bot.foodtype = 0
+            bot.primary = 0
+            bot.secondary = 0
+            sendenc(['sp', [{name: 'potato mod', moofoll: "1", skin: '6'}]]);
+                        setTimeout(() => {
+                sendenc(["5", [bot.primary, true]]);
+            }, 100)
+        }
+
+        if (item == "1" && bot.id == null){
+            bot.id = data[1];
+        }
+
+        if(data[0] == "h" && data[1] == bot.id && data[2] < 90 && cursettingsval.botheal){
+            setTimeout(() => {
+                placeb(bot.foodtype)
+            }, 100)
+        }
+
+    if(item == '17'){
+                    if (data[2]) {
+                bot.primary = data[1][0]
+                bot.secondary = data[1][1] || null;
+            } else {
+       for (let i = 0; i < data[1].length; i++) {
+                    for (let i2 = 0; i2 < 3; i2++) {
+                        if (i2 == data[1][i]) {
+                            bot.foodtype = data[1][i];
+                        }
+                    }
+       }
+            }
+       }
+        if(cursettingsval.botleave){
+            sendenc(["9", [null]]);
+        }
+        if(item == "33") {
+            for(let i = 0; i < data[1].length / 13; i++) {
+                let playerInfo = data[1].slice(13*i, 13*i+13);
+                if(playerInfo[0] == bot.id) {
+                    bot.x = playerInfo[1];
+                    bot.y = playerInfo[2];
+                    bot.dir = playerInfo[3];
+                    bot.weapon = playerInfo[5];
+                    bot.tribe = playerInfo[7];
+                }
+            }
+            bot.playerdist = Math.sqrt(Math.pow((myPlayer.y-bot.y), 2) + Math.pow((myPlayer.x-bot.x), 2))
+            if(cursettingsval.zombie){
+               sendenc(["10", [myPlayer.clan]]);
+               }
+            if(cursettingsval.zombie && nearestEnemy){
+                bot.enemydir = Math.atan2(nearestEnemy[2]-bot.y, nearestEnemy[1]-bot.x);
+                sendenc(['ch', ['(potato) ur ded lol']]);
+                sendenc(['33', [bot.enemydir]]);
+                sendenc(["2", [Number.MAX_VALUE]]);
+                sendenc(["c", [1, null]]);
+                sendenc(["c", [0, null]]);
+                sendenc(["6", [3]]);
+                sendenc(["6", [17]]);
+                sendenc(["6", [31]]);
+                sendenc(["6", [27]]);
+                sendenc(["6", [10]]);
+                sendenc(["6", [38]]);
+                sendenc(["6", [4]]);
+                sendenc(["6", [15]]);
+            } else if(cursettingsval.bots && bot.playerdist > 150){
+                bot.playerdir = Math.atan2(myPlayer.y-bot.y, myPlayer.x-bot.x);
+                sendenc(['33', [bot.playerdir]]);
+                if(bot.playerdist < 800){
+                    sendenc(['2', [bot.playerdir]]);
+                } else if (cursettingsval.botsatk){
+                    sendenc(['2', [Number.MAX_VALUE]]);
+                    sendenc(["c", [1, null]]);
+                    sendenc(["c", [0, null]]);
+                } else {
+                    sendenc(['2', [toRad(lolbotdir)]]);
+                }
+                sendenc(['ch', ['potato mod feed bots']]);
+            } else {
+                sendenc(['ch', ['potato bot idle']]);
+                sendenc(['33', [null]]);
+                sendenc(['2', [toRad(lolbotdir)]]);
+            }
+        }
+        if(cursettingsval.forcedisc){
+            ws.close();
+        }
+    }
+    ws.onclose = () => {
+        botsconnected--
+        document.title = `bots connected: ${botsconnected}`
+        console.log('closed websocket');
+        return;
+    }
+}
+
+var lolbotdir = 0;
+setInterval(() => {
+    lolbotdir++
+}, 0);
+var botsconnected = 0;
+var menuChange = document.createElement("div");
+menuChange.className = "menuCard";
+menuChange.id = "mainSettings";
+menuChange.innerHTML = `
+        <div id="simpleModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="closeBtn">&times;</span>
+                    <h2 style="font-size: 17px;">Settings</h2>
+                </div>
+                <div class="modal-body" style="font-size: 15px;">
+                    <div class="flexControl">
+                    <h2 style="font-size: 17px;">Main.</h2>
+        <label class="container">Break trap?
+        <input type="checkbox" id="autbrek">
+        <span class="checkmark"></span></label>
+        <label class="container">Anti bull spam (barbarian armour)?
+        <input type="checkbox" id="abs">
+        <span class="checkmark"></span></label>
+<h2 style="font-size: 17px;">Bot.</h2>
+        <label class="container">Bots?
+        <input type="checkbox" id="bots">
+        <span class="checkmark"></span></label>
+        <label class="container">Bots attack when not near?
+        <input type="checkbox" id="botsatk">
+        <span class="checkmark"></span></label>
+        <label class="container">Bots attack nearest enemy to you?
+        <input type="checkbox" id="zombie">
+        <span class="checkmark"></span></label>
+        <label class="container">Bots autoheal?
+        <input type="checkbox" id="botheal">
+        <span class="checkmark"></span></label>
+        <label class="container">Bots leave tribe?
+        <input type="checkbox" id="botleave">
+        <span class="checkmark"></span></label>
+        <label class="container">Force disconnect bots?
+        <input type="checkbox" id="forcedisc">
+        <span class="checkmark"></span></label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+        `
+        document.body.appendChild(menuChange)
+var styleItem1 = document.createElement("style");
+styleItem1.type = "text/css";
+styleItem1.appendChild(document.createTextNode(`
+        .keyPressLow {
+            margin-left: 8px;
+            font-size: 16px;
+            margin-right: 8px;
+            height: 25px;
+            width: 50px;
+            background-color: #00F0F8FF;
+            border-radius: 3.5px;
+            border: none;
+            text-align: center;
+            color: #4A4A4A;
+            border: 0.5px solid #f2f2f2;
+        }
+        .menuPrompt {
+            font-size: 17px;
+            font-family: 'Hammersmith One';
+            color: #4A4A4A;
+            flex: 0.2;
+            text-align: center;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            overflow: auto;
+            height: 100%;
+            width: 100%;
+        }
+        .modal-content {
+            margin: 10% auto;
+            width: 40%;
+            box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .modal-header h2,
+        .modal-footer h3 {
+          margin: 0;
+        }
+        .modal-header {
+            background: rgba(0,0,0,0.5);
+            padding: 15px;
+            color: #fff;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .modal-body {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.5);
+        }
+        .modal-footer {
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        .closeBtn {
+            color: #00c864;
+            float: right;
+            font-size: 30px;
+            color: red;
+        }
+        .closeBtn:hover,
+        .closeBtn:focus {
+            color: #00c864;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .container {
+          display: block;
+          position: relative;
+          padding-left: 35px;
+          margin-bottom: 12px;
+          cursor: pointer;
+          font-size: 16px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+        .container input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
+        }
+        .checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 25px;
+          width: 25px;
+          background-color: black;
+        }
+        .container:hover input ~ .checkmark {
+          background-color: #ccc;
+        }
+        .container input:checked ~ .checkmark {
+          background-color: #00c864;
+        }
+        .checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+        .container input:checked ~ .checkmark:after {
+          display: block;
+        }
+        .container .checkmark:after {
+          left: 9px;
+          top: 5px;
+          width: 5px;
+          height: 10px;
+          border: solid white;
+          border-width: 0 3px 3px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+        `))
+document.head.appendChild(styleItem1);
+
+document.addEventListener('keydown', function(e) {
+    if (e.keyCode == 27){
+        if (modal.style.display = "none") {
+            modal.style.display = "block";
+        } else if (modal.style.display = "block") {
+            modal.style.display = "none";
+        }
+    }
+})
+
+var modal = document.getElementById("simpleModal");
+var closeBtn = document.getElementsByClassName('closeBtn')[0];
+
+closeBtn.addEventListener('click', closeModal);
+window.addEventListener('click', outsideClick);
+
+function closeModal() {
+    modal.style.display = 'none';
+}
+function outsideClick(e) {
+    if (e.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+
+
+var cursettingsval = {
+    breaktrap: false,
+    abs: false,
+    bots: false,
+    botsatk: false,
+    forcedisc: false,
+    zombie: false,
+    botheal: false,
+    botleave: false
+}
+
+var cursettings = {
+    breaktrap: document.querySelector("#autbrek"),
+    abs: document.querySelector("#abs"),
+    bots: document.querySelector("#bots"),
+    botsatk: document.querySelector("#botsatk"),
+    forcedisc: document.querySelector("#forcedisc"),
+    zombie: document.querySelector("#zombie"),
+    botheal: document.querySelector("#botheal"),
+    botleave: document.querySelector("#botleave")
+}
+
+cursettings.breaktrap.addEventListener('change', function() {
+    if (this.checked) {
+        cursettingsval.breaktrap = true;
+    } else {
+        cursettingsval.breaktrap = false;
+    }
+});
+
+cursettings.abs.addEventListener('change', function() {
+    if (this.checked) {
+        cursettingsval.abs = true;
+    } else {
+        cursettingsval.abs = false;
+    }
+});
+
+cursettings.bots.addEventListener('change', function() {
+    if (this.checked) {
+        join4bots();
+        cursettingsval.bots = true;
+    } else {
+        cursettingsval.bots = false;
+    }
+});
+
+cursettings.botsatk.addEventListener('change', function() {
+    if (this.checked) {
+        cursettingsval.botsatk = true;
+    } else {
+        cursettingsval.botsatk = false;
+    }
+});
+
+cursettings.forcedisc.addEventListener('change', function() {
+    if (this.checked) {
+        cursettingsval.forcedisc = true;
+    } else {
+        cursettingsval.forcedisc = false;
+    }
+});
+
+cursettings.zombie.addEventListener('change', function() {
+    if (this.checked) {
+        cursettingsval.zombie = true;
+    } else {
+        cursettingsval.zombie = false;
+    }
+});
+
+cursettings.botheal.addEventListener('change', function() {
+    if (this.checked) {
+        cursettingsval.botheal = true;
+    } else {
+        cursettingsval.botheal = false;
+    }
+});
+
+cursettings.botleave.addEventListener('change', function() {
+    if (this.checked) {
+        cursettingsval.botleave = true;
+    } else {
+        cursettingsval.botleave = false;
+    }
+});
+
+function setstring(o){
+    return JSON.stringify(o);
+}
+
+function setparse(o){
+    return JSON.parse(o);
+}

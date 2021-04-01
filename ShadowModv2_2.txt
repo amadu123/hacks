@@ -1,0 +1,1557 @@
+// ==UserScript==
+// @name        ShadowModv2
+// @namespace    -
+// @version      v2
+// @description  Sedrickcabida#2004
+// @author       SC :D
+// @match        *://sandbox.moomoo.io/*
+// @match        *://moomoo.io/*
+// @grant        none
+// @require https://greasyfork.org/scripts/368273-msgpack/code/msgpack.js?version=598723
+// @require http://code.jquery.com/jquery-3.3.1.min.js
+// @require https://code.jquery.com/ui/1.12.0/jquery-ui.min.js
+// @require https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js
+// @require https://cdn.jsdelivr.net/gh/emn178/js-sha3/build/sha3.min.js
+// @icon    https://cdn.discordapp.com/avatars/508249193165619211/5266a85a16f55cc6053d5fa31d5cc8a9.png?size=128
+//f4=lag insta
+//j=reverse insta
+//rightclick=click insta
+//o=invisible weapon
+//p=double freezemill
+//!crash=crash the server
+//leftkey=auto spam chat
+//right key=spam chat
+//end=katana+musket
+//del=crash
+// ==/UserScript==
+setInterval(function() {
+    //Anti Ad
+    document.querySelector("#pre-content-container").style.display = "none";
+    //more fps
+    window.location.native_resolution = true;
+}, 1000)
+alert('Press OK');
+var YouName = window.prompt("Password(SUB TO Sedrickcabida):","");
+$('#menuContainer').append('SUB TO Sedrickcabida!!')
+$("#mapDisplay").css({background: `url('https://i.imgur.com/fgFsQJp.png')`});
+let hue = 0;
+
+let replaceInterval = setInterval(() => {
+if (CanvasRenderingContext2D.prototype.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = ((oldFunc) => function() { if (this.fillStyle == "#8ecc51") this.fillStyle = `hsl(${hue}, 100%, 50%)`; return oldFunc.call(this, ...arguments); })(CanvasRenderingContext2D.prototype.roundRect);
+  clearInterval(replaceInterval);
+}}, 10);
+
+function changeHue() {
+  hue += Math.random() * 3;
+}
+
+setInterval(changeHue, 10);
+document.querySelector("#leaderboard").appendChild(
+  (function() {
+    let text = "Ping: ";
+    let oldPing = 0;
+    const pingSpan = document.createElement("span");
+    pingSpan.id = "pingTime";
+    pingSpan.textContent = text;
+    pingSpan.style.display = "inline-block";
+    setInterval(function() {
+      typeof pingTime !== "undefined" &&
+        oldPing !== pingTime &&
+        ((oldPing = pingTime),
+        (pingSpan.textContent = text + oldPing),
+        (function() {
+          if (oldPing <= 100) {
+            pingSpan.style.color = "red";
+          }
+          if (oldPing >= 101 && oldPing <= 250) {
+            pingSpan.style.color = "Orange";
+          }
+          if (oldPing >= 251) {
+            pingSpan.style.color = "yellow";
+          }
+        })());
+    });
+    return pingSpan;
+  })()
+);
+
+document.getElementById("gameName").style.color = "black";
+document.getElementById('gameName').innerHTML = 'ShadowModv2';
+$("#ageBarBody").css({background: `url('https://cdn.discordapp.com/attachments/782127969568292884/787557084639789126/4432ab2679a492f477140c9e24d380a3.png')`})
+const stycross = [
+    "Default (Cursor)","Default (Red)","Default (Blue)","Default (Green)","Default (Yellow)","Default (Purple)","FuckYouFinger","Corona Virus (Red)","Corona Virus (Blue)","Minecraft Sword","Minecraft Pickaxe","Minecraft Axe","Reddot","Crossdot","Smalldot","Crosshair","Crosshair Maxi","Crosshair Mini","Crosshair Spray","Crosshair Sniper","Crosshair Bazooka","Crosshair Alien","Crosshair (Black)","Crosshair (Red)","Crosshair (Blue)","Crosshair (Green)","Crosshair (Gold)","Crosshair (Gold+)","Crosshair (Silver)","CrosshairX (Black)","CrosshairX (Red)","CrosshairX (Blue)","CrosshairX (Green)","CrosshairL (Red)","CrosshairL (Blue)","CrosshairL (Green)","CrosshairL (Yellow)","CrosshairL (Purple)",
+];
+var stylerSelect = document.createElement("select");
+stylerSelect.style.backgroundColor = "Red";
+stylerSelect.style.color = "Black";
+stylerSelect.id = "cursor-game";
+stylerSelect.style.marginBottom = "0px";
+for (var mn = 0; mn < stycross.length; mn++) {
+    var optioner = document.createElement("option");
+    optioner.text = stycross[mn];
+    if(stycross[mn] == "Default (Cursor)") { optioner.value="auto"; }
+    if(stycross[mn] == "Default (Blue)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=25204'), auto"; }
+    if(stycross[mn] == "Default (Red)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=25209'), auto"; }
+    if(stycross[mn] == "Default (Green)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=25203'), auto"; }
+    if(stycross[mn] == "Default (Yellow)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=25211'), auto"; }
+    if(stycross[mn] == "Default (Purple)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=25208'), auto"; }
+    if(stycross[mn] == "FuckYouFinger") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=23291'), auto"; }
+    if(stycross[mn] == "Corona Virus (Red)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=134748'), auto"; }
+    if(stycross[mn] == "Corona Virus (Blue)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=134662'), auto"; }
+    if(stycross[mn] == "Minecraft Sword") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=129896'), auto"; }
+    if(stycross[mn] == "Minecraft Pickaxe") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=129911'), auto"; }
+    if(stycross[mn] == "Minecraft Axe") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=129903'), auto"; }
+    if(stycross[mn] == "Crosshair Maxi") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=30924'), auto"; }
+    if(stycross[mn] == "Crosshair Mini") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=30925'), auto"; }
+    if(stycross[mn] == "Crosshair Spray") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=31245'), auto"; }
+    if(stycross[mn] == "Crosshair Sniper") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=31250'), auto"; }
+    if(stycross[mn] == "Crosshair Bazooka") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=31248'), auto";}
+    if(stycross[mn] == "CrosshairX (Black)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=42279'), auto"; }
+    if(stycross[mn] == "CrosshairX (Blue)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=42285'), auto"; }
+    if(stycross[mn] == "CrosshairX (Red)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=42287'), auto"; }
+    if(stycross[mn] == "CrosshairX (Green)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=42286'), auto"; }
+    if(stycross[mn] == "Crosshair Alien") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=42281'), auto"; }
+    if(stycross[mn] == "Crosshair (Black)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=42280'), auto"; }
+    if(stycross[mn] == "Crosshair (Blue)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=42288'), auto"; }
+    if(stycross[mn] == "Crosshair (Red)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=42290'), auto"; }
+    if(stycross[mn] == "Crosshair (Green)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=42289'), auto"; }
+    if(stycross[mn] == "Crosshair (Gold)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=97792'), auto"; }
+    if(stycross[mn] == "Crosshair (Gold+)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=97801'), auto"; }
+    if(stycross[mn] == "Crosshair (Silver)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=99159'), auto"; }
+    if(stycross[mn] == "Reddot") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=47970'), auto"; }
+    if(stycross[mn] == "Crossdot") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=47974'), auto"; }
+    if(stycross[mn] == "Smalldot") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=47971'), auto"; }
+    if(stycross[mn] == "CrosshairL (Blue)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=42292'), auto"; }
+    if(stycross[mn] == "CrosshairL (Red)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=42294'), auto"; }
+    if(stycross[mn] == "CrosshairL (Green)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=42293'), auto"; }
+    if(stycross[mn] == "CrosshairL (Yellow)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=42300'), auto"; }
+    if(stycross[mn] == "CrosshairL (Purple)") { optioner.value="url('http://www.rw-designer.com/cursor-extern.php?id=42295'), auto"; }
+    stylerSelect.add(optioner);
+}
+document.getElementById("scoreDisplay").style.color = "#000000";
+document.getElementById("woodDisplay").style.color = "#000000";
+document.getElementById("stoneDisplay").style.color = "#000000";
+document.getElementById("killCounter").style.color = "#000000";
+document.getElementById("foodDisplay").style.color = "#000000";
+document.getElementById("moomooio_728x90_home").style.display = "none";
+$("#moomooio_728x90_home").parent().css({display: "none"});
+$("#consentBlock").css({display: "none"});
+//$("#youtuberOf").css({display: "none"});
+document.getElementById("allianceButton").style.color = "black";
+document.getElementById("chatButton").style.color = "black";
+document.getElementById("ageText").style.color = "black";
+document.getElementById("leaderboard").style.color = "black";
+document.getElementById("leaderboard").append ('ShadowMod OP');
+document.getElementById('diedText').innerHTML = 'U died Ez';
+document.getElementById('diedText').style.color = "Black";
+$("#mainMenu").css("background", "url('https://wallpapercave.com/wp/wp2812654.jpg");
+document.getElementById("storeButton").style.color = "black";
+document.getElementById("storeHolder").style = "height: 1500px; width: 450px;";
+window.onbeforeunload = null;
+document.getElementById("enterGame").addEventListener('click', rwrw)
+var RLC=0
+var MLC=0
+var KFC=0
+function rwrw(){
+console.log("Game Start")
+S=1;M=1;H=1
+}
+var H=1,M=1,S=1
+setInterval(() => {
+RLC++
+S++
+}, 1000);
+setInterval(() => {
+if(RLC==60){
+MLC++
+RLC=0
+}
+if(MLC==60){
+KFC++
+MLC=0
+}
+if(S==60){
+M++
+S=0
+}
+if(M==60){
+H++
+M=0
+}
+}, 0);
+var FPS;
+(function() {
+    var UPDATE_DELAY = 700;
+
+    var lastUpdate = 0;
+    var frames = 0;
+
+    function updateCounter() {
+        var now = Date.now();
+        var elapsed = now - lastUpdate;
+        if (elapsed < UPDATE_DELAY) {
+            ++frames;
+        } else {
+            FPS = Math.round(frames / (elapsed / 1000));
+            frames = 0;
+            lastUpdate = now;
+        }
+
+        requestAnimationFrame(updateCounter);
+    }
+
+    lastUpdate = Date.now();
+    requestAnimationFrame(updateCounter);
+})();
+var Day,Month,Year
+setInterval(() => {
+    var Date2=new Date()
+Month = Date2.getUTCMonth() + 1; //months from 1-12
+Day = Date2.getUTCDate();
+Year = Date2.getUTCFullYear();
+    fpsdiv.innerHTML = "FPS:" + FPS + ""
+    +"<br>Clock: "+KFC+":"+MLC+":"+RLC
+}, 0);
+let fpsdiv = document.createElement("div");
+
+fpsdiv.id = "test"
+document.body.prepend(fpsdiv);
+document.getElementById('test').style.color='#FFFFFF'
+document.getElementById('test').style.fontSize='20px'
+document.getElementById('test').style.position='absolute'
+document.getElementById('test').style.textAlign='center'
+document.getElementById('test').style.width='390px'
+document.getElementById('test').style.height='70px'
+document.getElementById('test').style.backgroundColor='rgba(0, 0, 0, 0.4)'
+
+let newImg = document.createElement("img");
+newImg.src = "https://wallpapercave.com/wp/wp2812654.jpg";
+newImg.style = `position: absolute; top: 15px; left: 15px; z-index: 100000; width: 50px; height: 50px; cursor: pointer;`;
+document.body.prepend(newImg);
+
+newImg.addEventListener("click", () => {
+       let w = window.open("https://www.youtube.com/channel/UCIjuq6XmM_G4tjW_p4NLB-Q", null, `height=650, width=1199, status=yes, toolbar=no, menubar=no, location=no`);
+});
+
+$( "#partyButton, #joinPartyButton" ).wrapAll( '<div class="partyWrap"></div>' );
+document.getElementById("loadingText").style.color = "Black";
+document.getElementById('loadingText').innerHTML = '!!!Loading!!!';
+$( "#linksContainer2 > a:nth-child(1)" ).replaceWith( '<a href="./docs/versions.txt" target="_blank" class="menuLink">ShadowModv2 - v2</a>' );
+document.getElementById('chatBox').placeholder = "SC GAMING";
+$( "#partyButton" ).replaceWith( '<span>Empty </span><i class="material-icons" style="font-size:30px;vertical-align:middle">?</i>' );
+document.title = "ShadowModv2";
+let mouseX;
+let mouseY;
+
+let width;
+let height;
+
+setInterval(() => {
+   if(clanToggle == 1) {
+        doNewSend(["9", [null]]);
+        doNewSend(["8", [animate(false, 5)]])
+    }
+    doNewSend(["testing", [6]]);
+}, 200);
+
+setInterval(() => {
+    if(messageToggle == 1) {
+        doNewSend(["ch", [animate(true, 5)]])
+    }
+}, 200);
+
+setInterval(() => {
+    if(autoaim == true) {
+        doNewSend(["2", [nearestEnemyAngle]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if(autoprimary == true) {
+        doNewSend(["5", [primary, true]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if(autosecondary == true) {
+        doNewSend(["5", [secondary, true]]);
+    }
+}, 0);
+
+setInterval(() => {
+    if(hatToggle == 1) {
+        if(oldHat != normalHat) {
+            hat(normalHat);
+            console.log("Tried. - Hat")
+        }
+        if(oldAcc != normalAcc) {
+            acc(normalAcc);
+            console.log("Tried. - Acc")
+        }
+        oldHat = normalHat;
+        oldAcc = normalAcc
+    }
+}, 25);
+
+function normal() {
+    hat(normalHat);
+    acc(normalAcc);
+}
+
+function aim(x, y){
+     var cvs = document.getElementById("gameCanvas");
+     cvs.dispatchEvent(new MouseEvent("mousemove", {
+         clientX: x,
+         clientY: y
+
+     }));
+}
+
+let coreURL = new URL(window.location.href);
+window.sessionStorage.force = coreURL.searchParams.get("fc");
+
+var nearestEnemy;
+var nearestEnemyAngle;
+var isEnemyNear;
+var instaspeed = 200;
+var primary;
+var secondary;
+var foodType;
+var wallType;
+var superinsta = true;
+var antiinsta = true;
+var KM = false;
+var hammer = false;
+var ACH = false;
+var autoInsta = false;
+var reverse = false;
+var lag = false;
+var spikeType;
+var millType;
+var mineType;
+var boostType;
+var turretType;
+var spawnpadType;
+var autoaim = false;
+var autoprimary = false;
+var autosecondary = false;
+var tick = 1;
+var oldHat;
+var oldAcc;
+var enemiesNear;
+var normalHat;
+var normalAcc;
+var ws;
+var msgpack5 = msgpack;
+var boostDir;
+let myPlayer = {
+    id: null,
+    x: null,
+    y: null,
+    dir: null,
+    object: null,
+    weapon: null,
+    clan: null,
+    isLeader: null,
+    hat: null,
+    accessory: null,
+    isSkull: null
+};
+
+let healSpeed = 40; //Bigger number = SLOWER autoheal; fastest is 0.
+var messageToggle = 0;
+var clanToggle = 0;
+var AutoMill = 0;
+let crashing;
+let closed;
+let healToggle = 1;
+let hatToggle = 1;
+var command = "!";
+
+
+document.msgpack = msgpack;
+function n(){
+     this.buffer = new Uint8Array([0]);
+     this.buffer.__proto__ = new Uint8Array;
+     this.type = 0;
+}
+
+const CanvasAPI = document.getElementById("gameCanvas")
+CanvasAPI.addEventListener("mousedown", buttonPressD, false);
+
+function buttonPressD(e) {
+    if (e.button == 2) {
+        if(KM == false) {
+            doNewSend(["13c", [1, 40, 0]]);
+            doNewSend(["13c", [0, 40, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 21, 1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            doNewSend(["7", [1]]);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            if (myPlayer.y < 2400){
+                doNewSend(["13c", [0, 11, 0]]);
+            } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                doNewSend(["13c", [0, 31, 0]]);
+            } else {
+	            doNewSend(["13c", [0, 11, 0]]);
+            }
+        }, 120);
+        }
+        if(KM == true) {
+            autoprimary = true;
+            autosecondary = false;
+            autoaim = true;
+            autoprimary = true;
+            autosecondary = false;
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["13c", [1, 7, 0]]);
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["13c", [1, 18, 1]]);
+            doNewSend(["13c", [0, 18, 1]]);
+        setTimeout( () => {
+            autoprimary = false;
+            autosecondary = true;
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 21, 1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            doNewSend(["13c", [1, 53, 0]]);
+            doNewSend(["13c", [0, 53, 0]]);
+            doNewSend(["5", [secondary, true]]);
+        }, 107.5);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [0, 11, 1]]);
+            if (myPlayer.y < 2400){
+                doNewSend(["13c", [0, 15, 0]]);
+            } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                doNewSend(["13c", [0, 31, 0]]);
+            } else {
+	            doNewSend(["13c", [0, 12, 0]]);
+            }
+            autosecondary = false;
+            autoaim = false;
+        }, 215);
+      }
+    }
+    if (e.button == 1) {
+            doNewSend(["13c", [1, 21, 0]]);
+            doNewSend(["13c", [0, 21, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 18, 1]]);
+            doNewSend(["13c", [0, 18, 1]]);
+            doNewSend(["7", [1]]);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [0, 11, 1]]);
+            doNewSend(["13c", [1, 11, 1]]);
+        }, 120);
+        setTimeout( () => {
+            doNewSend(["7", [1]]);
+        }, 200);
+    }
+    if (e.button == 0) {
+        if(hammer == false) {
+        if(KM == false) {
+            doNewSend(["13c", [1, 7, 0]]);
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 18, 1]]);
+            doNewSend(["13c", [0, 18, 1]]);
+            doNewSend(["7", [1]]);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            if (myPlayer.y < 2400){
+                doNewSend(["13c", [0, 11, 0]]);
+            } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                doNewSend(["13c", [0, 31, 0]]);
+            } else {
+	            doNewSend(["13c", [0, 11, 0]]);
+            }
+            doNewSend(["7", [1]]);
+          }, 120);
+          }
+          }
+          if(KM == true) {
+            doNewSend(["13c", [1, 40, 0]]);
+            doNewSend(["13c", [0, 40, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 21, 1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            doNewSend(["7", [1]]);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            if (myPlayer.y < 2400){
+                doNewSend(["13c", [0, 11, 0]]);
+            } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                doNewSend(["13c", [0, 31, 0]]);
+            } else {
+	            doNewSend(["13c", [0, 11, 0]]);
+            }
+            }, 120);
+          }
+          if(hammer == true) {
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["13c", [1, 7, 0]]);
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["13c", [1, 18, 1]]);
+            doNewSend(["13c", [0, 18, 1]]);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 21, 1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            doNewSend(["13c", [1, 53, 0]]);
+            doNewSend(["13c", [0, 53, 0]]);
+        }, 107.5);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            if (myPlayer.y < 2400){
+                doNewSend(["13c", [0, 11, 0]]);
+            } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                doNewSend(["13c", [0, 31, 0]]);
+            } else {
+	            doNewSend(["13c", [0, 11, 0]]);
+            }
+        }, 215);
+        }
+       }
+    }
+
+WebSocket.prototype.oldSend = WebSocket.prototype.send;
+WebSocket.prototype.send = function(m){
+    if (!ws){
+        document.ws = this;
+
+        ws = this;
+        socketFound(this);
+    }
+    this.oldSend(m);
+};
+
+
+function socketFound(socket){
+    socket.addEventListener('message', function(message){
+        handleMessage(message);
+    });
+}
+
+function handleMessage(m){
+    let temp = msgpack5.decode(new Uint8Array(m.data));
+    let data;
+    if(temp.length > 1) {
+        data = [temp[0], ...temp[1]];
+        if (data[1] instanceof Array){
+            data = data;
+        }
+    } else {
+      data = temp;
+    }
+    let item = data[0];
+    if(!data) {return};
+
+    if(item === "io-init") {
+            let cvs = document.getElementById("gameCanvas");
+            width = cvs.clientWidth;
+            height = cvs.clientHeight;
+            $(window).resize(function() {
+                width = cvs.clientWidth;
+                height = cvs.clientHeight;
+            });
+            cvs.addEventListener("mousemove", e => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+        }
+
+    if (item == "1" && myPlayer.id == null){
+        myPlayer.id = data[1];
+    }
+
+    if (item == "33") {
+        enemiesNear = [];
+        for(let i = 0; i < data[1].length / 13; i++) {
+            let playerInfo = data[1].slice(13*i, 13*i+13);
+            if(playerInfo[0] == myPlayer.id) {
+                myPlayer.x = playerInfo[1];
+                myPlayer.y = playerInfo[2];
+                myPlayer.dir = playerInfo[3];
+                myPlayer.object = playerInfo[4];
+                myPlayer.weapon = playerInfo[5];
+                myPlayer.clan = playerInfo[7];
+                myPlayer.isLeader = playerInfo[8];
+                myPlayer.hat = playerInfo[9];
+                myPlayer.accessory = playerInfo[10];
+                myPlayer.isSkull = playerInfo[11];
+            } else if(playerInfo[7] != myPlayer.clan || playerInfo[7] === null) {
+                enemiesNear.push(playerInfo);
+            }
+        }
+    }
+
+    isEnemyNear = false;
+    if(enemiesNear) {
+        nearestEnemy = enemiesNear.sort((a,b) => dist(a, myPlayer) - dist(b, myPlayer))[0];
+    }
+
+    if(nearestEnemy) {
+        nearestEnemyAngle = Math.atan2(nearestEnemy[2]-myPlayer.y, nearestEnemy[1]-myPlayer.x);
+        if(Math.sqrt(Math.pow((myPlayer.y-nearestEnemy[2]), 2) + Math.pow((myPlayer.x-nearestEnemy[1]), 2)) < 0) {
+            isEnemyNear = true;
+            if(autoaim == false && myPlayer.hat != 7 && myPlayer.hat != 53) {
+                normalHat = 6;
+                if(primary != 8) {
+                    normalAcc = 19
+                }
+            };
+        }
+    }
+    if(isEnemyNear == false && autoaim == false) {
+        normalAcc = 11;
+        if (myPlayer.y < 2400){
+            normalHat = 15;
+        } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+            normalHat = 31;
+        } else {
+	        normalHat = 12;
+        }
+    }
+    if (!nearestEnemy) {
+        nearestEnemyAngle = myPlayer.dir;
+    }
+
+    if (nearestEnemy && autoInsta) {
+        if (Math.sqrt(Math.pow((myPlayer.y-nearestEnemy[2]), 2) + Math.pow((myPlayer.x-nearestEnemy[1]), 2)) < 195) {
+            autoInsta = false;
+            autoprimary = true;
+            autosecondary = false;
+            autoaim = true;
+            autoprimary = true;
+            autosecondary = false;
+            doNewSend(["ch", ["         Auto Insta         "]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["13c", [1, 7, 0]]);
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["13c", [1, 18, 1]]);
+            doNewSend(["13c", [0, 18, 1]]);
+        setTimeout( () => {
+            autoprimary = false;
+            autosecondary = true;
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 21, 1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            doNewSend(["13c", [1, 53, 0]]);
+            doNewSend(["13c", [0, 53, 0]]);
+            doNewSend(["5", [secondary, true]]);
+        }, 107.5);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [0, 11, 1]]);
+            if (myPlayer.y < 2400){
+                doNewSend(["13c", [0, 15, 0]]);
+            } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                doNewSend(["13c", [0, 31, 0]]);
+            } else {
+	            doNewSend(["13c", [0, 12, 0]]);
+            }
+            autosecondary = false;
+            autoaim = false;
+        }, 215);
+        setTimeout( () => {
+            autoInsta = true;
+        }, 275);
+      }
+   }
+if (data[0] == "ch" && data[1] == myPlayer.id && data[2].split(' ')[0] == command+"crash") {
+        setTimeout(() => {
+            crashing = true;
+        },500);
+    }
+    if (crashing && !closed) {
+        for (let e = 0; e < 1000; e++) {
+            let result = new Uint8Array(Math.round(Math.random() * 18));for (let i = 0; i < result.length; i++) {if (i == 0) {result[i] = Math.round(Math.random() * 256);} else {if (i == 1) {result[i] = Math.round(Math.random() * 256);} else {if (i == 2) {result[i] = Math.round(Math.random() * 128);} else {if (i == 3) {result[i] = Math.round(Math.random() * 85);} else {if (i == 4) {result[i] = Math.round(Math.random() * 64);} else {if (i == 5) {result[i] = Math.round(Math.random() * 51);} else {if (i == 6) {result[i] = Math.round(Math.random() * 42);} else {if (i == 7) {result[i] = Math.round(Math.random() * 36);} else {if (i == 8) {result[i] = Math.round(Math.random() * 32);} else {if (i == 9) {result[i] = Math.round(Math.random() * 28);} else {if (i == 10) {result[i] = Math.round(Math.random() * 25);} else {if (i == 11) {result[i] = Math.round(Math.random() * 23);} else {if (i == 12) {result[i] = Math.round(Math.random() * 21);} else {if (i == 13) {result[i] = Math.round(Math.random() * 19);} else {if (i == 14) {result[i] = Math.round(Math.random() * 18);} else {if (i == 15) {result[i] = Math.round(Math.random() * 17);} else {if (i == 16) {result[i] = Math.round(Math.random() * 16);} else {if (i == 17) {result[i] = Math.round(Math.random() * 15);}}}}}}}}}}}}}}}}}}}ws.oldSend(result);
+        }
+    }
+   if(item == "h" && data[1] == myPlayer.id) {
+       if(data[2] < 100 && data[2] > 0 && healToggle == 1) {
+           setTimeout( () => {
+               place(foodType, null);
+               place(foodType, null);
+               place(foodType, null);
+               place(foodType, null);
+           }, healSpeed);
+       }
+   if(item == "h" && data[1] == myPlayer.id) {
+        if(data[2] <50 && data[2] > 0 && antiinsta == true) {
+            place(foodType);
+            setTimeout( () => {
+                place(foodType);
+                place(foodType);
+            }, 5);
+        }
+   }
+       if(data[2] < 100 && data[2] > 0) {
+           setTimeout( () => {
+               place(foodType, null);
+           }, 115);
+       }
+        if(data[2] < 60 && data[2] > 0 && ACH == true) {
+           setTimeout( () => {
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+            doNewSend(['5', [foodType, null]]);
+            doNewSend(['c', [1]]);
+            doNewSend(['c', [0]]);
+            doNewSend(['5', [null]]);
+           }, 0.00001);
+       }
+   }
+
+   update();
+}
+function doNewSend(sender){
+    ws.send(new Uint8Array(Array.from(msgpack5.encode(sender))));
+}
+
+
+function acc(id) {
+    doNewSend(["13c", [0, 0, 1]]);
+    doNewSend(["13c", [0, id, 1]]);
+}
+
+function hat(id) {
+    doNewSend(["13c", [0, id, 0]]);
+}
+
+
+function place(id, angle = Math.atan2(mouseY - height / 2, mouseX - width / 2)) {
+    doNewSend(["5", [id, null]]);
+    doNewSend(["c", [1, angle]]);
+    doNewSend(["c", [0, angle]]);
+    doNewSend(["5", [myPlayer.weapon, true]]);
+}
+
+function placeQ(id, angle = Math.atan2(mouseY - height / 2, mouseX - width / 2)) {
+    doNewSend(["5", [id, null]]);
+    doNewSend(["c", [1, boostDir]]);
+    doNewSend(["c", [0, boostDir]]);
+    doNewSend(["5", [myPlayer.weapon, true]]);
+    doNewSend(["2", [nearestEnemyAngle]]);
+}
+
+function boostSpike() {
+    if(boostDir == null) {
+        boostDir = nearestEnemyAngle;
+    }
+    place(spikeType, boostDir + toRad(90));
+    place(spikeType, boostDir - toRad(90));
+    place(boostType, boostDir);
+    doNewSend(["33", [boostDir]]);
+}
+
+var repeater = function(key, action, interval) {
+    let _isKeyDown = false;
+    let _intervalId = undefined;
+
+    return {
+        start(keycode) {
+            if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                _isKeyDown = true;
+                if(_intervalId === undefined) {
+                    _intervalId = setInterval(() => {
+                        action();
+                        if(!_isKeyDown){
+                            clearInterval(_intervalId);
+                            _intervalId = undefined;
+                            console.log("claered");
+                        }
+                    }, interval);
+                }
+            }
+        },
+
+        stop(keycode) {
+            if(keycode == key && document.activeElement.id.toLowerCase() !== 'chatbox') {
+                _isKeyDown = false;
+            }
+        }
+    };
+
+
+}
+
+
+const healer1 = repeater(51, () => {place(foodType, null);
+                                    place(foodType, null);
+                                    place(foodType, null)}, 30);
+const healer2 = repeater(81, () => {place(foodType, null);
+                                    place(foodType, null);
+                                    place(foodType, null)}, 30);
+const healer3 = repeater(111, () => {place(foodType, null);
+                                    place(foodType, null);
+                                    place(foodType, null)}, 30);
+const healer4 = repeater(141, () => {place(foodType, null);
+                                    place(foodType, null);
+                                    place(foodType, null)}, 30);
+const boostPlacer = repeater(70, () => {place(boostType)}, 0);
+const fourSpawnpader = repeater(75, fourSpawnpad, 0);
+const spikePlacer = repeater(86, () => {place(spikeType)}, 0);
+const millPlacer = repeater(78, () => {place(millType)}, 0);
+const turretPlacer = repeater(72, () => {place(turretType)}, 0);
+
+document.addEventListener('keydown', (e)=>{
+    spikePlacer.start(e.keyCode);
+    fourSpawnpader.start(e.keyCode);
+    healer1.start(e.keyCode);
+    healer2.start(e.keyCode);
+    healer3.start(e.keyCode);
+    healer4.start(e.keyCode);
+    boostPlacer.start(e.keyCode);
+    millPlacer.start(e.keyCode);
+    turretPlacer.start(e.keyCode);
+
+    if (e.keyCode == 67 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["13c", [1, 6, 0]]);
+        doNewSend(["13c", [0, 6, 0]]);
+    }
+    if (e.keyCode == 46 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        crashing = true;
+    }
+    if (e.keyCode == 73 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        for (let i=0;i<4;i++){
+             let angle = myPlayer.dir + toRad(i * 90);
+             place(spikeType, angle)
+        }
+    }
+
+    if (e.keyCode == 76 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        for (let i=0;i<4;i++){
+             let angle = myPlayer.dir + toRad(i * 90);
+             place(boostType, angle)
+        }
+    }
+
+    if (e.keyCode == 79 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+         doNewSend(['5', ['length', !0]]);
+         doNewSend(["8", ["invisible"]]);
+    }
+
+    if (e.keyCode == 80 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    var _0x43bf = ['atan2'];
+    (function(_0x5178ad, _0x162026) {
+        var _0x43bfd2 = function(_0x12aa7c) {
+            while (--_0x12aa7c) {
+                _0x5178ad['push'](_0x5178ad['shift']());
+            }
+        };
+        _0x43bfd2(++_0x162026);
+    }(_0x43bf, 0x1e2));
+    var _0x12aa = function(_0x5178ad, _0x162026) {
+        _0x5178ad = _0x5178ad - 0x162;
+        var _0x43bfd2 = _0x43bf[_0x5178ad];
+        return _0x43bfd2;
+    };
+    var _0x930559 = _0x12aa;
+    place(millType, Math[_0x930559(0x162)](mouseY - height / 0x2, mouseX - width / 0x2) + toRad(0x218711a2d)), place(millType, Math['atan2'](mouseY - height / 0x2, mouseX - width / 0x2) - toRad(0x218711a2d)), place(millType, Math['atan2'](mouseY - height / 0x2, mouseX - width / 0x2) - toRad(0x218711a2d));
+}
+
+    if (e.keyCode == 49 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        autosecondary = false;
+        autoprimary = true;
+        setTimeout( () => {
+            autoprimary = false;
+        }, 330);
+    }
+
+    if (e.keyCode == 50 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        autoprimary = false;
+        autosecondary = true;
+        setTimeout( () => {
+            autosecondary = false;
+        }, 330);
+    }
+
+
+    if (e.keyCode == 71 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["13c", [1, 7, 0]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [0, 18, 1]]);
+        doNewSend(["13c", [1, 18, 1]]);
+    }
+
+    if(e.keyCode == 188 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["5", [secondary, true]]);
+        doNewSend(["c", [1]]);
+        doNewSend(["c", [0, null]]);
+        doNewSend(["13c", [0, 53, 0]]);
+
+        setTimeout( () => {
+            doNewSend(["6", [12]]);
+            doNewSend(["c", [1]]);
+            doNewSend(["c", [0, null]]);
+
+        }, 125);
+
+        setTimeout( () => {
+            doNewSend(["6", [15]]);
+            doNewSend(["c", [1]]);
+            doNewSend(["c", [0, null]]);
+
+        }, 250);
+
+        setTimeout( () => {
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [0, 12, 0]]);
+            doNewSend(["13c", [0, 11, 1]]);
+            autoaim = false;
+        }, 375);
+    }
+
+    if (e.keyCode == 89 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["13c", [1, 53, 0]]);
+        doNewSend(["13c", [0, 53, 0]]);
+    }
+
+    if (e.keyCode == 66 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["5", [secondary, true]]);
+        doNewSend(["13c", [1, 20, 0]]);
+        doNewSend(["13c", [0, 20, 0]]);
+        doNewSend(["13c", [0, 11, 1]]);
+        setTimeout( () => {
+            doNewSend(["5", [primary, true]]);
+        if (myPlayer.y < 2400){
+            doNewSend(["13c", [0, 15, 0]]);
+        } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+            doNewSend(["13c", [0, 31, 0]]);
+        } else {
+	        doNewSend(["13c", [0, 6, 0]]);
+        }
+        doNewSend(["13c", [0, 11, 1]]);
+        }, 1689);
+    }
+
+    if(e.keyCode == 32 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        autoaim = true;
+        doNewSend(["5", [primary, true]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [0, 21, 1]]);
+        place(spikeType, myPlayer.dir + toRad(45));
+        place(spikeType, myPlayer.dir - toRad(45));
+        doNewSend(["c", [1]]);
+        doNewSend(["c", [0, null]]);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 53, 0]]);
+        }, 100);
+
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 12, 0]]);
+            doNewSend(["13c", [0, 11, 1]]);
+            autoaim = false;
+        }, 200);
+    }
+
+                    if(e.keyCode == 17 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        if (KM == false) {
+            KM = true;
+        } else {
+            KM = false;
+    }
+    }
+                    if(e.keyCode == 109 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        if (antiinsta == false) {
+            antiinsta = true;
+        } else {
+            antiinsta = false;
+    }
+    }
+                    if(e.keyCode == 113 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        if (lag == false) {
+            lag = true;
+        } else {
+            lag = false;
+    }
+    }
+                    if(e.keyCode == 192 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        if (hammer == false) {
+            hammer = true;
+        } else {
+            hammer = false;
+    }
+    }
+                    if(e.keyCode == 9 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        if (autoInsta == false) {
+            autoInsta = true;
+        } else {
+            autoInsta = false;
+    }
+    }
+                    if(e.keyCode == 74 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        if (reverse == false) {
+            reverse = true;
+        } else {
+            reverse = false
+    }
+    }
+                    if(e.keyCode == 107 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       if (ACH == false){
+           ACH = true;
+       } else {
+           ACH = false;
+
+    }
+    }
+    if(e.keyCode == 85 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+    autoaim = true;
+        doNewSend(["5", [primary, true]]);
+        doNewSend(["13c", [0, 7, 0]]);
+        doNewSend(["13c", [0, 0, 1]]);
+        doNewSend(["13c", [0, 18, 1]]);
+        doNewSend(["c", [1]]);
+        doNewSend(["c", [0, null]]);
+
+        setTimeout( () => {
+            doNewSend(["6", [5]]);
+            doNewSend(["c", [1]]);
+            doNewSend(["c", [0, null]]);
+        }, 100);
+
+        setTimeout( () => {
+            doNewSend(["13c", [0, 53, 0]]);
+        place(spikeType, myPlayer.dir + toRad(45));
+        place(spikeType, myPlayer.dir - toRad(45));
+        }, 200);
+
+        setTimeout( () => {
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 6, 0]]);
+            doNewSend(["13c", [0, 19, 1]]);
+            autoaim = false;
+        }, 300);
+    }
+
+   if (e.keyCode == 75 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+       place(spawnpadType, myPlayer.dir + toRad(45));
+       place(spawnpadType, myPlayer.dir - toRad(45));
+   }
+    if (e.keyCode == 90 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["13c", [1, 40, 0]]);
+        doNewSend(["13c", [0, 40, 0]]);
+    }
+
+    if (e.keyCode == 84 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["13c", [1, 22, 0]]);
+        doNewSend(["13c", [0, 22, 0]]);
+    }
+
+    if (e.keyCode == 16 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["13c", [1, 11, 1]]);
+        doNewSend(["13c", [0, 11, 1]]);
+        doNewSend(["13c", [1, 12, 0]]);
+        doNewSend(["13c", [0, 12, 0]]);
+        doNewSend(["13c", [1, 31, 0]]);
+        doNewSend(["13c", [1, 15, 0]]);
+    }
+
+    if(e.keyCode == 37 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        messageToggle = (messageToggle + 1) % 2;
+    }
+
+    if(e.keyCode == 39 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        clanToggle = (clanToggle + 1) % 2;
+    }
+
+    if(e.keyCode == 106 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        healToggle = (healToggle + 1) % 2;
+    }
+
+    if(e.keyCode == 40 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["6", [5]]);
+        doNewSend(["6", [17]]);
+        doNewSend(["6", [31]]);
+        doNewSend(["6", [23]]);
+        doNewSend(["6", [9]]);
+        doNewSend(["6", [38]]);
+        doNewSend(["6", [28]]);
+        doNewSend(["6", [15]]);
+    }
+
+    if(e.keyCode == 35 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        doNewSend(["6", [7]]);
+        doNewSend(["6", [17]]);
+        doNewSend(["6", [31]]);
+        doNewSend(["6", [27]]);
+        doNewSend(["6", [10]]);
+        doNewSend(["6", [38]]);
+        doNewSend(["6", [4]]);
+        doNewSend(["6", [15]]);
+    }
+
+    if (e.keyCode == 16 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+        if (myPlayer.y < 2400){
+            doNewSend(["13c", [0, 15, 0]]);
+        } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+            doNewSend(["13c", [0, 31, 0]]);
+        } else {
+	        doNewSend(["13c", [0, 12, 0]]);
+        }
+        doNewSend(["13c", [0, 11, 1]]);
+    }
+
+if(e.keyCode == 82 && document.activeElement.id.toLowerCase() !== 'chatbox') {
+   if (lag == false) {
+   if (reverse == false) {
+   if (hammer == false) {
+            autoprimary = true;
+            autosecondary = false;
+            autoaim = true;
+            autoprimary = true;
+            autosecondary = false;
+            doNewSend(["ch", ["         Reverse Insta         "]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["13c", [1, 7, 0]]);
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["13c", [1, 18, 1]]);
+            doNewSend(["13c", [0, 18, 1]]);
+        setTimeout( () => {
+            autoprimary = false;
+            autosecondary = true;
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 21, 1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            doNewSend(["13c", [1, 53, 0]]);
+            doNewSend(["13c", [0, 53, 0]]);
+            doNewSend(["5", [secondary, true]]);
+        }, 107.5);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [0, 11, 1]]);
+            if (myPlayer.y < 2400){
+                doNewSend(["13c", [0, 15, 0]]);
+            } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                doNewSend(["13c", [0, 31, 0]]);
+            } else {
+	            doNewSend(["13c", [0, 12, 0]]);
+            }
+            autosecondary = false;
+            autoaim = false;
+        }, 215);
+        }
+        }
+        }
+        if(lag == true) {
+            autoprimary = true;
+            autosecondary = false;
+            autoaim = true;
+            autoprimary = true;
+            autosecondary = false;
+            doNewSend(["ch", ["         Lag Insta        "]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["13c", [1, 7, 0]]);
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["13c", [1, 18, 1]]);
+            doNewSend(["13c", [0, 18, 1]]);
+        setTimeout( () => {
+            var sck = "";
+            autoprimary = false;
+            autosecondary = true;
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 21, 1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            doNewSend(["13c", [1, 53, 0]]);
+            doNewSend(["13c", [0, 53, 0]]);
+            doNewSend(["5", [secondary, true]]);
+            for(let i = 0; i < 865; i++){
+                let caas = new Uint8Array(490);
+                for(let i = 0; i <caas.length;i++){
+                    caas[i] = Math.floor(Math.random()*5);
+                    sck += caas[i]
+                }
+            }
+            ws.send(caas);
+        }, 107.5);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["13c", [0, 11, 1]]);
+            if (myPlayer.y < 2400){
+                doNewSend(["13c", [0, 15, 0]]);
+            } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                doNewSend(["13c", [0, 31, 0]]);
+            } else {
+	            doNewSend(["13c", [0, 12, 0]]);
+            }
+            autosecondary = false;
+            autoaim = false;
+        }, 215);
+        }
+        if(reverse == true) {
+            autoprimary = false;
+            autosecondary = true;
+            autoaim = true;
+            autoprimary = false;
+            autosecondary = true;
+            doNewSend(["ch", ["         reverse insta       "]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["5", [secondary, true]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["13c", [1, 53, 0]]);
+            doNewSend(["13c", [0, 53, 0]]);
+            doNewSend(["13c", [1, 21, 1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+        setTimeout( () => {
+            autoprimary = true;
+            autosecondary = false;
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 7, 0]]);
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["13c", [1, 18, 1]]);
+            doNewSend(["13c", [0, 18, 1]]);
+            doNewSend(["5", [primary, true]]);
+        }, 107.5);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["13c", [0, 11, 1]]);
+            if (myPlayer.y < 2400){
+                doNewSend(["13c", [0, 15, 0]]);
+            } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                doNewSend(["13c", [0, 31, 0]]);
+            } else {
+	            doNewSend(["13c", [0, 12, 0]]);
+            }
+            autosecondary = false;
+            autoaim = false;
+        }, 215);
+        }
+        if(hammer == true) {
+            autoprimary = true;
+            autosecondary = false;
+            autoaim = true;
+            autoprimary = true;
+            autosecondary = false;
+            doNewSend(["ch", ["         op         "]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["5", [primary, true]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["13c", [1, 7, 0]]);
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["13c", [1, 18, 1]]);
+            doNewSend(["13c", [0, 18, 1]]);
+        setTimeout( () => {
+            autoprimary = false;
+            autosecondary = true;
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 18, 1]]);
+            doNewSend(["13c", [0, 18, 1]]);
+            doNewSend(["13c", [1, 7, 0]]);
+            doNewSend(["13c", [0, 7, 0]]);
+            doNewSend(["5", [secondary, true]]);
+        }, 107.5);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["13c", [0, 0, 1]]);
+            doNewSend(["13c", [1, 21, 1]]);
+            doNewSend(["13c", [0, 21, 1]]);
+            doNewSend(["13c", [1, 53, 0]]);
+            doNewSend(["13c", [0, 53, 0]]);
+        }, 155);
+        setTimeout( () => {
+            doNewSend(["13c", [0, 0, 0]]);
+            doNewSend(["7", [1]]);
+            doNewSend(["13c", [0, 11, 1]]);
+            if (myPlayer.y < 2400){
+                doNewSend(["13c", [0, 15, 0]]);
+            } else if (myPlayer.y > 6850 && myPlayer.y < 7550){
+                doNewSend(["13c", [0, 31, 0]]);
+            } else {
+	            doNewSend(["13c", [0, 12, 0]]);
+            }
+            autosecondary = false;
+            autoaim = false;
+        }, 225);
+      }
+     }
+})
+
+document.addEventListener('keyup', (e)=>{
+    spikePlacer.stop(e.keyCode);
+    fourSpawnpader.stop(e.keyCode);
+    boostPlacer.stop(e.keyCode);
+    millPlacer.stop(e.keyCode);
+    turretPlacer.stop(e.keyCode);
+    healer1.stop(e.keyCode);
+    healer2.stop(e.keyCode);
+    healer3.stop(e.keyCode);
+    healer4.stop(e.keyCode);
+})
+
+
+function isElementVisible(e) {
+    return (e.offsetParent !== null);
+}
+
+function fourSpawnpad() {
+       place(spawnpadType, myPlayer.dir + toRad(135));
+       place(spawnpadType, myPlayer.dir + toRad(150));
+       place(spawnpadType, myPlayer.dir + toRad(165));
+       place(spawnpadType, myPlayer.dir + toRad(180));
+       place(spawnpadType, myPlayer.dir + toRad(270));
+       place(spawnpadType, myPlayer.dir + toRad(360));
+}
+
+function toRad(angle) {
+    return angle * 0.01745329251;
+}
+
+function dist(a, b){
+    return Math.sqrt( Math.pow((b.y-a[2]), 2) + Math.pow((b.x-a[1]), 2) );
+}
+
+function animate(space, chance) {
+    let result = '';
+    let characters;
+    if(space) {
+        characters = 'ShadowModv2';
+    } else {
+        characters = 'ShaDowmod'
+    }
+    if(space) {
+        characters = characters.padStart((30 - characters.length) / 2 + characters.length)
+        characters = characters.padEnd(30);
+    }
+    let count = 0;
+    for (let i = 0; i < characters.length; i++ ) {
+       if(Math.floor(Math.random() * chance) == 1 && characters.charAt(i) != "-" && count < 2 && characters.charAt(i) != " ") {
+           result += "";
+           count++
+       } else {
+           result += characters.charAt(i);
+       }
+    }
+    return result;
+}
+
+setInterval(function(){
+
+console.log("removed ads")
+document.getElementById("moomooio_728x90_home").style.display = "none";
+document.getElementById("adCard").style.display = "none";
+}, 3000);
+
+function update() {
+    for (let i=0;i<9;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            primary = i;
+        }
+    }
+
+    for (let i=9;i<16;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            secondary = i;
+        }
+    }
+
+    for (let i=16;i<19;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            foodType = i - 16;
+        }
+    }
+
+    for (let i=19;i<22;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            wallType = i - 16;
+        }
+    }
+
+    for (let i=22;i<26;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            spikeType = i - 16;
+        }
+    }
+
+    for (let i=26;i<29;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            millType = i - 16;
+        }
+    }
+
+    for (let i=29;i<31;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            mineType = i - 16;
+        }
+    }
+
+    for (let i=31;i<33;i++){
+        if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+            boostType = i - 16;
+        }
+    }
+
+   for (let i=33;i<36;i++){
+       if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+           turretType = i - 16;
+       }
+   }
+
+   for (let i=36;i<37;i++){
+       if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+           spawnpadType = i - 16;
+       }
+   }
+
+   for (let i=37;i<39;i++){
+       if (isElementVisible(document.getElementById("actionBarItem" + i.toString()))){
+           turretType = i - 16;
+       }
+   }
+}
+
+        document.head.appendChild(styleItem1);
+
+        document.addEventListener('keydown', function(e) {
+            if (e.keyCode == 27){
+                if (modal.style.display = "none") {
+                    modal.style.display = "block";
+                } else if (modal.style.display = "block") {
+                    modal.style.display = "none";
+                }
+            }
+        })
+
+        var modal = document.getElementById("simpleModal");
+        var closeBtn = document.getElementsByClassName('closeBtn')[0];
+
+        closeBtn.addEventListener('click', closeModal);
+        window.addEventListener('click', outsideClick);
+
+        function closeModal() {
+          modal.style.display = 'none';
+        }
+        function outsideClick(e) {
+          if (e.target == modal) {
+            modal.style.display = 'none';
+          }
+        }
+
+        var ProjaInvis3 = document.querySelector("#Pedro3")
+        ProjaInvis3.addEventListener('change', function() {
+        if (this.checked) {
+ReloadBar = true;
+            } else {
+ReloadBar = false;
+            }
+        })
+
+//# sourceMappingURL=bundle.js.map
+Parse();
+
+///⣿⣆� �⣷⡻⣽⣿⣯⢿⣽⣻⣿⣿⣿⣿⣆⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢸⣿
+///⡙� �⣆� �⣿⣦� �⣿⢯⣷⢿⡽⣿⣿⣿⣿⣆� �⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �� �⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢀⣿⣾
+///⣿⣷⡌⢦� �⣿⣿⣌� �⣽⢯⣿⣽⣻⣿⣿⣿⣧� �⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⢰⢣� �⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿� �⢀⢀⢿⣞
+///⣿⣽⣆� �⣧� �⣿⣿⡷⣌� �⢷⣯⡷⣟⣿⣿⣿⣷⡀⡹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣈� �⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢀⣴⡧⢀� �⣿
+///⢻⣽⣿⡄⢻⣷⡈⢿⣿⣿⢧⢀� �⢿⣻⡾⣽⣻⣿⣿⣄� �⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢁⣰⣾⣟⡿⢀⡄⢿
+///⡄⢿⣿⣷⢀� �⣟⣆� �⣿⣿⣆⢀⣀� �� �⣿⡽⣯⣿⣿⣷⣈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿� �⢀� � �⣯⣷⣿⡟⢀⢆� �
+///⣷⡈⢿⣿⣇⢱⡘⢿⣷⣬⣙� �⣧� �⣆⢀� �� �⣷⣟⣾⢿⣿⣆� �⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿� �� ⡞⢡⣿⢀⣿⣿⣿� �⡄⢸⡄
+///⣿⣷⡈⢿⣿⡆⢣⡀� �⢾⣟⣿⣿⣷⡈� �� �⣦⡈� �⣯⣿⢾⣿⣆� �� �� �� �� �� �⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �� �⢋� ⣾⡟� ⣿⣿⢀⣿⣿⡟� ⣿⢈⣧
+///⣿⣿⣿⣄� �⣿⡄⢳⡄⢆⡙� �⣽⣿⣿⣆⡀⢹⡷⣄� �⢿⣿⡾⣿⣆⢀⡀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⣀� ⣴⡿⣯� �� ⣿⣿⡏⢸⣿⡿⢁⣿⣿⢀⣿
+///⣿⣿⣿⣿⣦⡙⣿⣆⢻⡌⢿⣶⢤⣉⣙⣿⣷⡀� �� �� �� �� �⣿⣟⣿⣆⢙⣋⣤⣤⣤⣄⣀⢀⢀⢀⢀⣾⣿⣟⡷⣯⡿⢃⣼⣿⣿⣿� �⣼⡟⣡⣿⣿⣿⢀⡿
+///⣿⣆� �⣷⡻⣽⣿⣯⢿⣽⣻⣿⣿⣿⣿⣆⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢸⣿
+///⡙� �⣆� �⣿⣦� �⣿⢯⣷⢿⡽⣿⣿⣿⣿⣆� �⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �� �⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢀⣿⣾
+///⣿⣷⡌⢦� �⣿⣿⣌� �⣽⢯⣿⣽⣻⣿⣿⣿⣧� �⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⢰⢣� �⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿� �⢀⢀⢿⣞
+///⣿⣽⣆� �⣧� �⣿⣿⡷⣌� �⢷⣯⡷⣟⣿⣿⣿⣷⡀⡹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣈� �⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢀⣴⡧⢀� �⣿
+///⢻⣽⣿⡄⢻⣷⡈⢿⣿⣿⢧⢀� �⢿⣻⡾⣽⣻⣿⣿⣄� �⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢁⣰⣾⣟⡿⢀⡄⢿
+///⡄⢿⣿⣷⢀� �⣟⣆� �⣿⣿⣆⢀⣀� �� �⣿⡽⣯⣿⣿⣷⣈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿� �⢀� � �⣯⣷⣿⡟⢀⢆� �
+///⣷⡈⢿⣿⣇⢱⡘⢿⣷⣬⣙� �⣧� �⣆⢀� �� �⣷⣟⣾⢿⣿⣆� �⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿� �� ⡞⢡⣿⢀⣿⣿⣿� �⡄⢸⡄
+///⣿⣷⡈⢿⣿⡆⢣⡀� �⢾⣟⣿⣿⣷⡈� �� �⣦⡈� �⣯⣿⢾⣿⣆� �� �� �� �� �� �⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �� �⢋� ⣾⡟� ⣿⣿⢀⣿⣿⡟� ⣿⢈⣧
+///⣿⣿⣿⣄� �⣿⡄⢳⡄⢆⡙� �⣽⣿⣿⣆⡀⢹⡷⣄� �⢿⣿⡾⣿⣆⢀⡀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⣀� ⣴⡿⣯� �� ⣿⣿⡏⢸⣿⡿⢁⣿⣿⢀⣿
+///⣿⣿⣿⣿⣦⡙⣿⣆⢻⡌⢿⣶⢤⣉⣙⣿⣷⡀� �� �� �� �� �⣿⣟⣿⣆⢙⣋⣤⣤⣤⣄⣀⢀⢀⢀⢀⣾⣿⣟⡷⣯⡿⢃⣼⣿⣿⣿� �⣼⡟⣡⣿⣿⣿⢀⡿
+///⣿⣆� �⣷⡻⣽⣿⣯⢿⣽⣻⣿⣿⣿⣿⣆⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢸⣿
+///⡙� �⣆� �⣿⣦� �⣿⢯⣷⢿⡽⣿⣿⣿⣿⣆� �⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �� �⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢀⣿⣾
+///⣿⣷⡌⢦� �⣿⣿⣌� �⣽⢯⣿⣽⣻⣿⣿⣿⣧� �⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⢰⢣� �⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿� �⢀⢀⢿⣞
+///⣿⣽⣆� �⣧� �⣿⣿⡷⣌� �⢷⣯⡷⣟⣿⣿⣿⣷⡀⡹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣈� �⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢀⣴⡧⢀� �⣿
+///⢻⣽⣿⡄⢻⣷⡈⢿⣿⣿⢧⢀� �⢿⣻⡾⣽⣻⣿⣿⣄� �⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢁⣰⣾⣟⡿⢀⡄⢿
+///⡄⢿⣿⣷⢀� �⣟⣆� �⣿⣿⣆⢀⣀� �� �⣿⡽⣯⣿⣿⣷⣈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿� �⢀� � �⣯⣷⣿⡟⢀⢆� �
+///⣷⡈⢿⣿⣇⢱⡘⢿⣷⣬⣙� �⣧� �⣆⢀� �� �⣷⣟⣾⢿⣿⣆� �⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿� �� ⡞⢡⣿⢀⣿⣿⣿� �⡄⢸⡄
+///⣿⣷⡈⢿⣿⡆⢣⡀� �⢾⣟⣿⣿⣷⡈� �� �⣦⡈� �⣯⣿⢾⣿⣆� �� �� �� �� �� �⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �� �⢋� ⣾⡟� ⣿⣿⢀⣿⣿⡟� ⣿⢈⣧
+///⣿⣿⣿⣄� �⣿⡄⢳⡄⢆⡙� �⣽⣿⣿⣆⡀⢹⡷⣄� �⢿⣿⡾⣿⣆⢀⡀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⣀� ⣴⡿⣯� �� ⣿⣿⡏⢸⣿⡿⢁⣿⣿⢀⣿
+///⣿⣿⣿⣿⣦⡙⣿⣆⢻⡌⢿⣶⢤⣉⣙⣿⣷⡀� �� �� �� �� �⣿⣟⣿⣆⢙⣋⣤⣤⣤⣄⣀⢀⢀⢀⢀⣾⣿⣟⡷⣯⡿⢃⣼⣿⣿⣿� �⣼⡟⣡⣿⣿⣿⢀⡿
+///⣿⣆� �⣷⡻⣽⣿⣯⢿⣽⣻⣿⣿⣿⣿⣆⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢸⣿
+///⡙� �⣆� �⣿⣦� �⣿⢯⣷⢿⡽⣿⣿⣿⣿⣆� �⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �� �⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢀⣿⣾
+///⣿⣷⡌⢦� �⣿⣿⣌� �⣽⢯⣿⣽⣻⣿⣿⣿⣧� �⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⢰⢣� �⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿� �⢀⢀⢿⣞
+///⣿⣽⣆� �⣧� �⣿⣿⡷⣌� �⢷⣯⡷⣟⣿⣿⣿⣷⡀⡹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣈� �⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢀⣴⡧⢀� �⣿
+///⢻⣽⣿⡄⢻⣷⡈⢿⣿⣿⢧⢀� �⢿⣻⡾⣽⣻⣿⣿⣄� �⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢁⣰⣾⣟⡿⢀⡄⢿
+///⡄⢿⣿⣷⢀� �⣟⣆� �⣿⣿⣆⢀⣀� �� �⣿⡽⣯⣿⣿⣷⣈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿� �⢀� � �⣯⣷⣿⡟⢀⢆� �
+///⣷⡈⢿⣿⣇⢱⡘⢿⣷⣬⣙� �⣧� �⣆⢀� �� �⣷⣟⣾⢿⣿⣆� �⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿� �� ⡞⢡⣿⢀⣿⣿⣿� �⡄⢸⡄
+///⣿⣷⡈⢿⣿⡆⢣⡀� �⢾⣟⣿⣿⣷⡈� �� �⣦⡈� �⣯⣿⢾⣿⣆� �� �� �� �� �� �⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �� �⢋� ⣾⡟� ⣿⣿⢀⣿⣿⡟� ⣿⢈⣧
+///⣿⣿⣿⣄� �⣿⡄⢳⡄⢆⡙� �⣽⣿⣿⣆⡀⢹⡷⣄� �⢿⣿⡾⣿⣆⢀⡀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⣀� ⣴⡿⣯� �� ⣿⣿⡏⢸⣿⡿⢁⣿⣿⢀⣿
+///⣿⣿⣿⣿⣦⡙⣿⣆⢻⡌⢿⣶⢤⣉⣙⣿⣷⡀� �� �� �� �� �⣿⣟⣿⣆⢙⣋⣤⣤⣤⣄⣀⢀⢀⢀⢀⣾⣿⣟⡷⣯⡿⢃⣼⣿⣿⣿� �⣼⡟⣡⣿⣿⣿⢀⡿
+///⣿⣆� �⣷⡻⣽⣿⣯⢿⣽⣻⣿⣿⣿⣿⣆⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢸⣿
+///⡙� �⣆� �⣿⣦� �⣿⢯⣷⢿⡽⣿⣿⣿⣿⣆� �⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �� �⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢀⣿⣾
+///⣿⣷⡌⢦� �⣿⣿⣌� �⣽⢯⣿⣽⣻⣿⣿⣿⣧� �⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⢰⢣� �⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿� �⢀⢀⢿⣞
+///⣿⣽⣆� �⣧� �⣿⣿⡷⣌� �⢷⣯⡷⣟⣿⣿⣿⣷⡀⡹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣈� �⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢀⣴⡧⢀� �⣿
+///⢻⣽⣿⡄⢻⣷⡈⢿⣿⣿⢧⢀� �⢿⣻⡾⣽⣻⣿⣿⣄� �⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢁⣰⣾⣟⡿⢀⡄⢿
+///⡄⢿⣿⣷⢀� �⣟⣆� �⣿⣿⣆⢀⣀� �� �⣿⡽⣯⣿⣿⣷⣈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿� �⢀� � �⣯⣷⣿⡟⢀⢆� �
+///⣷⡈⢿⣿⣇⢱⡘⢿⣷⣬⣙� �⣧� �⣆⢀� �� �⣷⣟⣾⢿⣿⣆� �⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿� �� ⡞⢡⣿⢀⣿⣿⣿� �⡄⢸⡄
+///⣿⣷⡈⢿⣿⡆⢣⡀� �⢾⣟⣿⣿⣷⡈� �� �⣦⡈� �⣯⣿⢾⣿⣆� �� �� �� �� �� �⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �� �⢋� ⣾⡟� ⣿⣿⢀⣿⣿⡟� ⣿⢈⣧
+///⣿⣿⣿⣄� �⣿⡄⢳⡄⢆⡙� �⣽⣿⣿⣆⡀⢹⡷⣄� �⢿⣿⡾⣿⣆⢀⡀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⣀� ⣴⡿⣯� �� ⣿⣿⡏⢸⣿⡿⢁⣿⣿⢀⣿
+///⣿⣿⣿⣿⣦⡙⣿⣆⢻⡌⢿⣶⢤⣉⣙⣿⣷⡀� �� �� �� �� �⣿⣟⣿⣆⢙⣋⣤⣤⣤⣄⣀⢀⢀⢀⢀⣾⣿⣟⡷⣯⡿⢃⣼⣿⣿⣿� �⣼⡟⣡⣿⣿⣿⢀⡿
+///⣿⣆� �⣷⡻⣽⣿⣯⢿⣽⣻⣿⣿⣿⣿⣆⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢸⣿
+///⡙� �⣆� �⣿⣦� �⣿⢯⣷⢿⡽⣿⣿⣿⣿⣆� �⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �� �⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢀⣿⣾
+///⣿⣷⡌⢦� �⣿⣿⣌� �⣽⢯⣿⣽⣻⣿⣿⣿⣧� �⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⢰⢣� �⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿� �⢀⢀⢿⣞
+///⣿⣽⣆� �⣧� �⣿⣿⡷⣌� �⢷⣯⡷⣟⣿⣿⣿⣷⡀⡹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣈� �⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢀⣴⡧⢀� �⣿
+///⢻⣽⣿⡄⢻⣷⡈⢿⣿⣿⢧⢀� �⢿⣻⡾⣽⣻⣿⣿⣄� �⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �⢁⣰⣾⣟⡿⢀⡄⢿
+///⡄⢿⣿⣷⢀� �⣟⣆� �⣿⣿⣆⢀⣀� �� �⣿⡽⣯⣿⣿⣷⣈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿� �⢀� � �⣯⣷⣿⡟⢀⢆� �
+///⣷⡈⢿⣿⣇⢱⡘⢿⣷⣬⣙� �⣧� �⣆⢀� �� �⣷⣟⣾⢿⣿⣆� �⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿� �� ⡞⢡⣿⢀⣿⣿⣿� �⡄⢸⡄
+///⣿⣷⡈⢿⣿⡆⢣⡀� �⢾⣟⣿⣿⣷⡈� �� �⣦⡈� �⣯⣿⢾⣿⣆� �� �� �� �� �� �⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿� �� �⢋� ⣾⡟� ⣿⣿⢀⣿⣿⡟� ⣿⢈⣧
+///⣿⣿⣿⣄� �⣿⡄⢳⡄⢆⡙� �⣽⣿⣿⣆⡀⢹⡷⣄� �⢿⣿⡾⣿⣆⢀⡀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⣀� ⣴⡿⣯� �� ⣿⣿⡏⢸⣿⡿⢁⣿⣿⢀⣿
+///⣿⣿⣿⣿⣦⡙⣿⣆⢻⡌⢿⣶⢤⣉⣙⣿⣷⡀� �� �� �� �� �⣿⣟⣿⣆⢙⣋⣤⣤⣤⣄⣀⢀⢀⢀⢀⣾⣿⣟⡷⣯⡿⢃⣼⣿⣿⣿� �⣼⡟⣡⣿⣿⣿⢀⡿

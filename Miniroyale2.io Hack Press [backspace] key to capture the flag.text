@@ -1,0 +1,32 @@
+// ==UserScript==
+// @name         Miniroyale2.io Hack
+// @description  Press [backspace] key to capture the flag.
+// @author       Djapex2009
+// @namespace    tampermonkey.com
+// @iconURL      https://cdn.icon-icons.com/icons2/512/PNG/128/prog-js01_icon-icons.com_50789.png
+// @version      0.3
+// @include     *://miniroyale2.io/*
+// ==/UserScript==
+
+/*
+If you want to change the key to another, change 36 ( at line 17 [if (event.keyCode === 8) {] ) to another number from this list:
+http://gcctech.org/csc/javascript/javascript_keycodes.htm
+*/
+
+window.onkeydown = function(event) {
+   if (event.keyCode === 8) {
+//----------------------------------------------------------------
+
+    var get = {};
+    get.getEntityByName = function(a) {
+        return Object.values(pc.app._entityIndex).find(get => get.name == a);
+    };
+    var nm = get.getEntityByName("NetworkManager");
+
+//----------------------------------------------------------------
+
+nm == (nm.script.network.setFlagBack(), nm.script.network.setSavedFlag(), nm.script.network.setCaptureFlag());
+
+//----------------------------------------------------------------
+   }
+};
